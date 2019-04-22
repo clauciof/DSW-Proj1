@@ -21,7 +21,7 @@ import model.Site;
  */
 
 public class SiteDAO {
-
+    
     public SiteDAO() {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -37,7 +37,7 @@ public class SiteDAO {
     public void insert(Site site) {
         //criar tabela no BD para Site
         ////String sql = "INSERT INTO Site (endereço email, senha, endereco, nome, telefone) VALUES (?, ?, ?, ?, ?)"
-        String sql = "INSERT INTO Livro (titulo, autor, ano, preco) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO site (titulo, autor, ano, preco) VALUES (?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -56,8 +56,8 @@ public class SiteDAO {
     }
 
     public List<Site> getAll() {
-        List<Site> listaLivros = new ArrayList<>();
-        String sql = "SELECT * FROM Livro";
+        List<Site> listaSites = new ArrayList<>();
+        String sql = "SELECT * FROM site";
         try {
             Connection conn = this.getConnection();
             Statement statement = conn.createStatement();
@@ -69,7 +69,7 @@ public class SiteDAO {
                 String nome = resultSet.getString("nome");
                 String telefone = resultSet.getString("telefone");
                 Site site = new Site(email, senha, endereco, nome, telefone);
-                listaLivros.add(site);
+                listaSites.add(site);
             }
             
             resultSet.close();
@@ -78,11 +78,11 @@ public class SiteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return listaLivros;
+        return listaSites;
     }
     
       public void delete(Site site) {
-        String sql = "DELETE FROM Livro where enedereco = ?";
+        String sql = "DELETE FROM site where endereco = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class SiteDAO {
       
       public void update(Site site) {
         
-        String sql = "UPDATE Site SET enderecp = ?, email = ?, senha = ?, nome = ?, telefone = ?";
+        String sql = "UPDATE site SET endereco = ?, email = ?, senha = ?, nome = ?, telefone = ?";
         sql += " WHERE id = ?";
         try {
             Connection conn = this.getConnection();

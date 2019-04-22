@@ -5,6 +5,7 @@
  */
 package controller;
 
+import DAO.PromocaoDAO;
 import DAO.SiteDAO;
 import java.io.IOException;
 import java.util.List;
@@ -14,6 +15,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Promocao;
+import model.SalaTeatro;
 import model.Site;
 
 /**
@@ -24,11 +27,13 @@ import model.Site;
 public class Controller extends HttpServlet {
 
     private SiteDAO site_dao;
+    private PromocaoDAO promocao_dao;
+   // private SalaDao teatro_dao;
     
-
     @Override
     public void init() {
         site_dao = new SiteDAO();
+        promocao_dao = new PromocaoDAO();
     }
 
     @Override
@@ -56,6 +61,12 @@ public class Controller extends HttpServlet {
                 case "/atualizacao":
                     atualize(request, response);
                     break;
+                case "/formsCadastroSite":
+                    apresentaFormCadastroSite(request, response);
+                    break;
+                case "/formsCadastroPromoces":
+                    apresentaFormCadastroPromocoes(request, response);
+                    break;
                 default:
                     lista(request, response);
                     break;
@@ -66,14 +77,26 @@ public class Controller extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Site> listaLivros = site_dao.getAll();
-        request.setAttribute("listaLivros", listaLivros);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("livro/lista.jsp");
+        List<Site> listaSites = site_dao.getAll();
+        List<Promocao> listaPromocoes = promocao_dao.getAlmostAll();
+      //  List<SalaTeatro> listaTeatros = promocao_dao.getAll();
+        request.setAttribute("listaPromocoes", listaPromocoes);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/index.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void apresentaFormCadastroSite(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/formsCadastroSite.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void apresentaFormCadastroPromocoes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/formsCadastroSite.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("livro/formulario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -81,8 +104,8 @@ public class Controller extends HttpServlet {
        
         String endereco = request.getParameter("endereco");
         Site site = site_dao.get(endereco);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("livro/formulario.jsp");
-        request.setAttribute("livro", site);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/formulario.jsp");
+        request.setAttribute("site", site);
         dispatcher.forward(request, response);
     }
 

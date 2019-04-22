@@ -16,6 +16,8 @@ public class Site {
  private String endereco;
  private String nome;
  private String telefone;
+ 
+ 
  public Site(String email, String senha, String endereco, String nome, String telefone) {
  this.email = email;	 
  this.senha = senha;
