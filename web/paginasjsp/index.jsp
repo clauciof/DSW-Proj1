@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -52,8 +53,8 @@
                           <div class="tr">
                               <li><c:out value="${promocao.nome_peca}" /></li> 
                               <li><c:out value="${promocao.url}" /></li> 
-                              <li><c:out value="${promocao.preco}" /></li> 
-                              <li><c:out value="${promocao.data}" /></li>
+                              <li id="lipreco"><c:out value="${promocao.preco}" /></li> 
+                              <li><c:out value="${promocao.data_peca}" /></li>
                               <li><c:out value="${promocao.horario}" /></li>
                           </div>
                  </c:forEach>
@@ -65,6 +66,29 @@
 
         <div class="container-direito-principal">
           <h2><a>Teatros</a></h2>
+          
+          
+          <div class="table-teatro">
+            <div class="thead-teatro">
+              <li>Nome</li>
+              <li>Cidade</li>
+              <li>Email</li>
+              <li id="headcnpj">CNPJ</li>
+
+            </div>
+            
+            <div class="tbody-teatro">
+                <c:forEach var="teatro" items="${listaTeatros}"> 
+                          <div class="tr-teatro">
+                              <li><c:out value="${teatro.nome}" /></li> 
+                              <li><c:out value="${teatro.cidade}" /></li> 
+                              <li id="liemail"><c:out value="${teatro.email}" /></li> 
+                              <li><c:out value="${teatro.cnpj}" /></li>
+                             
+                          </div>
+                 </c:forEach>
+            </div>
+        </div>
 
         </div>
     </div>

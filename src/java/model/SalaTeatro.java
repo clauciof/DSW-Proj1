@@ -16,14 +16,14 @@ public class SalaTeatro {
  private String senha;
  private String cidade;
  private String nome;
- private String CNPJ;
+ private String cnpj;
  
- public SalaTeatro(String email, String senha, String cidade, String nome, String CNPJ) {
+ public SalaTeatro(String email, String cidade, String nome, String cnpj) {
     this.email = email;	 
-    this.senha = senha;
     this.cidade = cidade;
     this.nome = nome;
-    this.CNPJ = CNPJ;
+    this.cnpj = cnpj;
+    
  }
 
  public String getEmail() {
@@ -38,10 +38,10 @@ public class SalaTeatro {
  public void setSenha(String senha) {
  this.senha = senha;
  }
- public String getcidade() {
+ public String getCidade() {
  return cidade;
  }
- public void setcidade(String cidade) {
+ public void setCidade(String cidade) {
  this.cidade = cidade;
  }
  public String getNome() {
@@ -51,11 +51,11 @@ public class SalaTeatro {
  this.nome = nome;
  }
 
- public String getCNPJ() {
- return CNPJ;
+ public String getCnpj() {
+ return cnpj;
  }
- public void setCNPJ(String CNPJ) {
- this.CNPJ = CNPJ;
+ public void setCNPJ(String cnpj) {
+ this.cnpj = cnpj;
  }
     
     

@@ -11,29 +11,33 @@ package model;
  */
 public class Promocao {
     
-  private String CNPJ;
+ private String CNPJ;
  private String senha;
- private String endereco;
+ private String url;
  private String nome_peca;
  private String preco;
  private String data_peca;
  private String horario;
  
- public Promocao(String CNPJ, String senha, String endereco, String nome_peca, String preco) {
+ public Promocao(String nome_peca, String url, String preco, String data_peca, String horario  ) {
  this.CNPJ = CNPJ;	 
  this.senha = senha;
- this.endereco = endereco;
+ this.url = url;
  this.nome_peca = nome_peca;
  this.preco = preco;
+ this.data_peca=data_peca;
+ this.horario=horario;
  }
- 
- public String getData (){
-	return data_peca;
-}
 
- public void setData (String data_peca){
-	this.data_peca = data_peca;
-}
+    public void setNome_peca(String nome_peca) {
+        this.nome_peca = nome_peca;
+    }
+
+    public void setData_peca(String data_peca) {
+        this.data_peca = data_peca;
+    }
+
+ 
  public String getHorario (){
 	return horario;
 }
@@ -56,25 +60,27 @@ public class Promocao {
  public void setSenha(String senha) {
  this.senha = senha;
  }
- public String getEndereco() {
- return endereco;
+ public String getUrl() {
+ return url;
  }
- public void setEndereco(String endereco) {
- this.endereco = endereco;
+ public void setUrl(String url) {
+ this.url = url;
  }
- public String getnome_peca() {
- return nome_peca;
- }
- public void setnome_peca(String nome_peca) {
- this.nome_peca = nome_peca;
- }
+ 
+ public String getNome_peca() {
+        return nome_peca;
+    }
 
+ public String getData_peca() {
+     return data_peca;
+}
+ 
  public String getPreco() {
  return preco;
  }
+ 
  public void setPreco(String preco) {
  this.preco = preco;
  }
-    
-
+ 
 }

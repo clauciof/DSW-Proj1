@@ -10,6 +10,9 @@
     <head>
         <title>Sistema de Gerenciamento</title>
           <link rel = "stylesheet" type = "text/css" href = "css/stylesheet.css"/>
+           <style>
+            <%@ include file="css/stylesheet.css"%>
+        </style>
     </head>
     <body>
       <center>

@@ -86,17 +86,73 @@ nav li{
 
 .thead li{
     background-color: #DDEFEF;
-    text-align: left;
     display: inline-block;
     color: #39b7dd;
-    margin-left: 35px;
-    margin-right: 35px;
-     padding: 0px;
+    margin-left: 20px;
+    margin-right: 40px;
+    width: 50px;
+    padding: 0px;
+   
 }
 
 .tr li{
+    
     display: inline-block;
     text-decoration: none;
+    text-align: left;
+    margin-right: 35px;
+    width: 70px;
+    margin-top: 5px;
+}
+
+
+.table-teatro{
+    
+    border: solid 1px #DDEEEE;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 13px Arial, sans-serif;
+    margin: 0 auto;
+    margin-top: 5% ;
+}
+
+.thead-teatro{
+    background-color: #DDEFEF;
+}
+
+.thead-teatro li{
+    background-color: #DDEFEF;
+    display: inline-block;
+    color: #39b7dd;
+    margin-right: 0px;
+    width: 120px;
+    padding: 0px;
+   
+}
+
+.tr-teatro li{
+    
+    display: inline-block;
+    text-decoration: none;
+    text-align: left;
+    margin-right: 40px;
+    width: 70px;
+    margin-top: 5px;
+}
+
+#headcnpj{
+    margin-left: 70px
+}
+
+#liemail{
+   margin-right: 100px; 
+   width: 100px;
+}
+
+#lipreco{
+    
+    margin-left: 35px;
+    margin-right: 25px;
 }
 
 

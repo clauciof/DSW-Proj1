@@ -42,12 +42,12 @@ public class PromocaoDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement = conn.prepareStatement(sql);
-            statement.setString(1, promocao.getCNPJ());
+              statement.setString(1, promocao.getCNPJ());
             statement.setString(2, promocao.getSenha());
-            statement.setString(3, promocao.getEndereco());
-            statement.setString(4, promocao.getnome_peca());
+            statement.setString(3, promocao.getUrl());
+            statement.setString(4, promocao.getNome_peca());
             statement.setString(5, promocao.getPreco());
-            statement.setString(6, promocao.getData());
+            statement.setString(6, promocao.getData_peca());
             statement.setString(7, promocao.getHorario());
             statement.executeUpdate();
             statement.close();
@@ -115,7 +115,7 @@ public class PromocaoDAO {
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, promocao.getEndereco());
+            statement.setString(1, promocao.getUrl());
             statement.executeUpdate();
             statement.close();
             conn.close();

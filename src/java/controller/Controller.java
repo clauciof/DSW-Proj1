@@ -6,6 +6,7 @@
 package controller;
 
 import DAO.PromocaoDAO;
+import DAO.SalaDAO;
 import DAO.SiteDAO;
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +20,7 @@ import model.Promocao;
 import model.SalaTeatro;
 import model.Site;
 
+
 /**
  *
  * @author clauc
@@ -28,12 +30,13 @@ public class Controller extends HttpServlet {
 
     private SiteDAO site_dao;
     private PromocaoDAO promocao_dao;
-   // private SalaDao teatro_dao;
+    private SalaDAO teatro_dao;
     
     @Override
     public void init() {
         site_dao = new SiteDAO();
         promocao_dao = new PromocaoDAO();
+        teatro_dao = new SalaDAO();
     }
 
     @Override
@@ -77,10 +80,13 @@ public class Controller extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Site> listaSites = site_dao.getAll();
-        List<Promocao> listaPromocoes = promocao_dao.getAlmostAll();
-      //  List<SalaTeatro> listaTeatros = promocao_dao.getAll();
+        //List<Site> listaSites = site_dao.getAll();
+       List<Promocao> listaPromocoes = promocao_dao.getAlmostAll();
+        
+        List<SalaTeatro> listaTeatros = teatro_dao.getAlmostAll();
+        request.setAttribute("listaTeatros", listaTeatros);
         request.setAttribute("listaPromocoes", listaPromocoes);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/index.jsp");
         dispatcher.forward(request, response);
     }

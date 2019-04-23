@@ -5,12 +5,170 @@
  */
 package DAO;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.SalaTeatro;
+import model.Site;
+
+
 /**
  *
  * @author clauc
  */
 public class SalaDAO {
     
+    
+    public SalaDAO() {
+        try {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Connection getConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:derby://localhost:1527/SistemaVendasDB", "root", "root");
+    }
+
+    public void insert(SalaTeatro salaTeatro) {
+        //criar tabela no BD para Site
+        ////String sql = "INSERT INTO Site (endereço email, senha, endereco, nome, telefone) VALUES (?, ?, ?, ?, ?)"
+        String sql = "INSERT INTO salateatro (cnpj, email, senha, cidade, nome) VALUES (?, ?, ?, ?, ?)";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement = conn.prepareStatement(sql);
+              statement.setString(1, salaTeatro.getCnpj());
+            statement.setString(2, salaTeatro.getSenha());
+            statement.setString(3, salaTeatro.getEmail());
+            statement.setString(4, salaTeatro.getNome());
+            statement.setString(5, salaTeatro.getCidade());
+            statement.executeUpdate();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+   /* public List<Promocao> getAll() {
+        List<Promocao> listaPromocao = new ArrayList<>();
+        String sql = "SELECT * FROM promocao";
+        try {
+            Connection conn = this.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                String endereco = resultSet.getString("endereco");
+                String nome_peca = resultSet.getString("nome");
+                String telefone = resultSet.getString("telefone");
+                Site site = new Site(email, senha, endereco, nome_peca, telefone);
+                listaPromocao.add(site);
+            }
+            
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaPromocao;
+    }*/
+    
+    
+    public List<SalaTeatro> getAlmostAll() {
+        List<SalaTeatro> listaSalateatro = new ArrayList<>();
+        String sql = "SELECT email, cidade, nome, cnpj FROM salateatro";
+        try {
+            Connection conn = this.getConnection();
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String cidade = resultSet.getString("cidade");
+                String nome = resultSet.getString("nome");
+                String cnpj = resultSet.getString("cnpj");
+                
+                SalaTeatro salateatro = new SalaTeatro(email, cidade, nome, cnpj);
+                listaSalateatro.add(salateatro);
+            }
+            
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaSalateatro;
+    }
+    
+      public void delete(SalaTeatro salaTeatro) {
+        String sql = "DELETE FROM promocao where email = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, salaTeatro.getEmail());
+            statement.executeUpdate();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+      
+      public void update( SalaTeatro salaTeatro) {
+        
+        String sql = "UPDATE salateatro SET cidade = ?, email = ?, senha = ?, nome = ?, cnpj = ?";
+        sql += " WHERE id = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, salaTeatro.getCidade());
+            statement.setString(2, salaTeatro.getEmail());
+            statement.setString(3, salaTeatro.getSenha());
+            statement.setString(4, salaTeatro.getNome());
+            statement.setString(5, salaTeatro.getCnpj());
+            statement.executeUpdate();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+      
+      
+    public Site get(String endereco) {
+        Site site = null;
+        String sql = "SELECT * FROM Site WHERE endereco = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, endereco);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                String nome = resultSet.getString("nome");
+                String telefone = resultSet.getString("telefone");
+                site = new Site(endereco, email, senha, nome, telefone);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return site;
+    }
     
     
     
