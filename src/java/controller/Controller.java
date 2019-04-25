@@ -49,8 +49,8 @@ public class Controller extends HttpServlet {
         String action = request.getServletPath();
         try {
             switch (action) {
-                case "/cadastro":
-                    //apresentaFormCadastro(request, response);
+                case "/formsEdicaoCadastroTeatro":
+                    apresentaFormEdicaoCadastroTeatro(request, response);
                     break;
                 case "/insercaosite":
                     inseresite(request, response);
@@ -66,7 +66,7 @@ public class Controller extends HttpServlet {
                     remove(request, response);
                     break;
                 case "/edicao":
-                    apresentaFormEdicao(request, response);
+                    //apresentaFormEdicao(request, response);
                     break;
                 case "/atualizacao":
                     atualize(request, response);
@@ -110,11 +110,6 @@ public class Controller extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/formsCadastroSite.jsp");
         dispatcher.forward(request, response);
     }
-
-   /* private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/formulario.jsp");
-        dispatcher.forward(request, response);
-    }*/
     
     private void apresentaFormCadastroTeatro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/formsCadastroTeatros.jsp");
@@ -122,12 +117,12 @@ public class Controller extends HttpServlet {
     }
   
 
-    private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void apresentaFormEdicaoCadastroTeatro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
-        String endereco = request.getParameter("endereco");
-        Site site = site_dao.get(endereco);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/formulario.jsp");
-        request.setAttribute("site", site);
+        String cnpj = request.getParameter("id");
+        SalaTeatro salateatro = teatro_dao.get(cnpj);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/formsEdicaoCadastroTeatros.jsp");
+        request.setAttribute("salateatro", salateatro);
         dispatcher.forward(request, response);
     }
 

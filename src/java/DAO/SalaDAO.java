@@ -146,20 +146,21 @@ public class SalaDAO {
     }
       
       
-    public Site get(String endereco) {
-        Site site = null;
-        String sql = "SELECT * FROM Site WHERE endereco = ?";
+    public SalaTeatro get(String cnpj) {
+        SalaTeatro salateatro = null;
+        String sql = "SELECT * FROM salateatro WHERE cnpj = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, endereco);
+            statement.setString(1, cnpj);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                String cnpj_ = resultSet.getString("cnpj");
                 String email = resultSet.getString("email");
                 String senha = resultSet.getString("senha");
+                String cidade = resultSet.getString("cidade");
                 String nome = resultSet.getString("nome");
-                String telefone = resultSet.getString("telefone");
-                site = new Site(endereco, email, senha, nome, telefone);
+                salateatro = new SalaTeatro(email, senha, cidade, nome, cnpj);
             }
             resultSet.close();
             statement.close();
@@ -167,7 +168,7 @@ public class SalaDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return site;
+        return salateatro;
     }
     
     

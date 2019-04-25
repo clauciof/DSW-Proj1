@@ -5,6 +5,11 @@ body{
   margin:0;
 }
 
+a{
+    text-decoration: none;
+    color: #000000;
+}
+
 
 .div-header{
   background: rgba(255,255,250, 0.3);

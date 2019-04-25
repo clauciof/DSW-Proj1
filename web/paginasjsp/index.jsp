@@ -50,7 +50,7 @@
             
             <div class="tbody">
                 <c:forEach var="promocao" items="${listaPromocoes}"> 
-                          <div class="tr">
+                    <div class="tr">
                               <li><c:out value="${promocao.nome_peca}" /></li> 
                               <li><c:out value="${promocao.url}" /></li> 
                               <li id="lipreco"><c:out value="${promocao.preco}" /></li> 
@@ -80,10 +80,10 @@
             <div class="tbody-teatro">
                 <c:forEach var="teatro" items="${listaTeatros}"> 
                           <div class="tr-teatro">
-                              <li><c:out value="${teatro.nome}" /></li> 
-                              <li><c:out value="${teatro.cidade}" /></li> 
-                              <li id="liemail"><c:out value="${teatro.email}" /></li> 
-                              <li><c:out value="${teatro.cnpj}" /></li>
+                              <li> <a href="/SistemaPromocoesVendas/formsEdicaoCadastroTeatro?id=<c:out value='${teatro.cnpj}' />"> <c:out value="${teatro.nome}" /> </a></li> 
+                              <li> <a href="/SistemaPromocoesVendas/formsEdicaoCadastroTeatro?id=<c:out value='${teatro.cnpj}' />"> <c:out value="${teatro.cidade}" /></a></li> 
+                              <li id="liemail"> <a href="/SistemaPromocoesVendas/formsEdicaoCadastroTeatro?id=<c:out value='${teatro.cnpj}' />"><c:out value="${teatro.email}" /></a></li> 
+                              <li> <a href="/SistemaPromocoesVendas/formsEdicaoCadastroTeatro?id=<c:out value='${teatro.cnpj}' />"><c:out value="${teatro.cnpj}" /></a></li>
                              
                           </div>
                  </c:forEach>
