@@ -37,14 +37,14 @@ public class SiteDAO {
     public void insert(Site site) {
         //criar tabela no BD para Site
         ////String sql = "INSERT INTO Site (endereço email, senha, endereco, nome, telefone) VALUES (?, ?, ?, ?, ?)"
-        String sql = "INSERT INTO site (titulo, autor, ano, preco) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO site (email, senha, endereco, nome, telefone) VALUES (?, ?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
            // statement = conn.prepareStatement(sql);
-            statement.setString(1, site.getEndereco());
-            statement.setString(2, site.getEmail());
-            statement.setString(3, site.getSenha());
+            statement.setString(1, site.getEmail());
+            statement.setString(2, site.getSenha());
+            statement.setString(3, site.getEndereco());
             statement.setString(4, site.getNome());
             statement.setString(5, site.getTel());
             statement.executeUpdate();

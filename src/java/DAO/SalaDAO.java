@@ -45,11 +45,11 @@ public class SalaDAO {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement = conn.prepareStatement(sql);
-              statement.setString(1, salaTeatro.getCnpj());
-            statement.setString(2, salaTeatro.getSenha());
-            statement.setString(3, salaTeatro.getEmail());
-            statement.setString(4, salaTeatro.getNome());
-            statement.setString(5, salaTeatro.getCidade());
+            statement.setString(1, salaTeatro.getCnpj());
+            statement.setString(2, salaTeatro.getEmail());
+            statement.setString(3, salaTeatro.getSenha());
+            statement.setString(4, salaTeatro.getCidade());
+            statement.setString(5, salaTeatro.getNome());
             statement.executeUpdate();
             statement.close();
             conn.close();

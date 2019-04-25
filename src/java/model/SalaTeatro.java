@@ -25,6 +25,14 @@ public class SalaTeatro {
     this.cnpj = cnpj;
     
  }
+ public SalaTeatro(String email, String senha, String cidade, String nome, String cnpj) {
+    this.email = email;	 
+    this.cidade = cidade;
+    this.nome = nome;
+    this.cnpj = cnpj;
+    this.senha = senha;
+    
+ }
 
  public String getEmail() {
  return email;

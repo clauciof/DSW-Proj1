@@ -23,19 +23,19 @@
             <div class="container1head">Adicione Novo Site</div>
           </h2>
 
-          <form> <!--action="/action_page.php" !-->
+            <form action="insercaosite" method="POST"> <!--action="/action_page.php" !-->
             Email:<br>
-            <input type="email" name="email" class="inputfield"><br><br>
+            <input type="email" name="email" class="inputfield"  id="campoemail"><br><br>
             Senha:<br>
-            <input type="password" name="password" class="inputfield"><br><br>
+            <input type="password" name="password" class="inputfield"  id="camposenha"><br><br>
             URL:<br>
-            <input type="url" name="url" class="inputfield"><br><br>
+            <input type="text" name="url" class="inputfield"  id="campourl"><br><br>
             Nome:<br>
-            <input type="text" name="nome" class="inputfield"><br><br>
+            <input type="text" name="nome" class="inputfield"  id="camponome"> <br><br>
             Telefone<br>
-            <input type="text" name="telefone" class="inputfield"><br><br>
+            <input type="text" name="telefone" class="inputfield"  id="campotelefone"><br><br>
 
-            <button type="button" class="btnsubmit">Cadastrar</button>
+            <button type="submit" class="btnsubmit" onclick="return validaformsite();">Cadastrar</button>
 
 
           </form>
@@ -43,4 +43,24 @@
         </div>
       </center>
     </body>
+    
+    <script>
+        function validaformsite(){
+            
+             var email = document.getElementById("campoemail").value;
+              var senha = document.getElementById("camposenha").value;
+              var url = document.getElementById("campourl").value;
+              var nome = document.getElementById("camponome").value;
+              var telefone = document.getElementById("campotelefone").value;
+               
+            if(email.length==0 || senha.length==0 ||url.length==0 || nome.length==0 || telefone.length==0 ){
+                alert("Todos os campos devem ser preenchidos");
+                return false;
+            }
+            
+            return true;
+ 
+        }
+    </script>
+    
 </html>
