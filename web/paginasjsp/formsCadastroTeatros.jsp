@@ -57,6 +57,8 @@
                 alert("Todos os campos devem ser preenchidos");
                 return false;
             }
+            
+            return true;
         
           }
       </script>

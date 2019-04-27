@@ -57,34 +57,7 @@ public class SalaDAO {
             throw new RuntimeException(e);
         }
     }
-
-   /* public List<Promocao> getAll() {
-        List<Promocao> listaPromocao = new ArrayList<>();
-        String sql = "SELECT * FROM promocao";
-        try {
-            Connection conn = this.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                String email = resultSet.getString("email");
-                String senha = resultSet.getString("senha");
-                String endereco = resultSet.getString("endereco");
-                String nome_peca = resultSet.getString("nome");
-                String telefone = resultSet.getString("telefone");
-                Site site = new Site(email, senha, endereco, nome_peca, telefone);
-                listaPromocao.add(site);
-            }
-            
-            resultSet.close();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return listaPromocao;
-    }*/
-    
-    
+   
     public List<SalaTeatro> getAlmostAll() {
         List<SalaTeatro> listaSalateatro = new ArrayList<>();
         String sql = "SELECT email, cidade, nome, cnpj FROM salateatro";
@@ -112,11 +85,11 @@ public class SalaDAO {
     }
     
       public void delete(SalaTeatro salaTeatro) {
-        String sql = "DELETE FROM promocao where email = ?";
+        String sql = "DELETE FROM salateatro where cnpj = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setString(1, salaTeatro.getEmail());
+            statement.setString(1, salaTeatro.getCnpj());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -125,10 +98,10 @@ public class SalaDAO {
         }
     }
       
-      public void update( SalaTeatro salaTeatro) {
+      public void update(SalaTeatro salaTeatro) {
         
         String sql = "UPDATE salateatro SET cidade = ?, email = ?, senha = ?, nome = ?, cnpj = ?";
-        sql += " WHERE id = ?";
+        sql += " WHERE cnpj = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -137,6 +110,7 @@ public class SalaDAO {
             statement.setString(3, salaTeatro.getSenha());
             statement.setString(4, salaTeatro.getNome());
             statement.setString(5, salaTeatro.getCnpj());
+            statement.setString(6, salaTeatro.getCnpj());
             statement.executeUpdate();
             statement.close();
             conn.close();

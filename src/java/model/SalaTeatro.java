@@ -33,6 +33,11 @@ public class SalaTeatro {
     this.senha = senha;
     
  }
+ 
+ public SalaTeatro(String cnpj) {
+    this.cnpj = cnpj;
+       
+ }
 
  public String getEmail() {
  return email;

@@ -25,7 +25,8 @@
 
 
 
-              <form action="atualizacaoteatro" method="POST"> <!--action="/action_page.php" !-->
+            
+              <form action="" method="POST" id="form"> 
               Email:<br>
               <c:if test="${salateatro != null}"> 
                 <input type="email" name="email" class="inputfield" id="campoemail" value='${salateatro.email}' /> <br><br>
@@ -46,8 +47,8 @@
               <c:if test="${salateatro != null}"> 
                 <input type="text" name="cidade" class="inputfield" id="campocidade" value='${salateatro.cidade}'/><br><br>
               </c:if>
-              <button type="submit" class="btnsubmit" class="inputfield" onclick="return validaform();">Atualizar</button>
-              <button type="submit" class="btnsubmit" class="inputfield" onclick="return validaform();">Apagar</button>
+              <button type="submit" class="btnsubmit" class="inputfield" onclick="return validaformAtualiza();">Atualizar</button>
+              <button type="submit" class="btnsubmit" class="inputfield" onclick="return validaformApagar(${salateatro.cnpj});">Apagar</button>
 
             </form>
 
@@ -56,7 +57,30 @@
       </body>
     
       <script>
-          function validaform(){
+          function validaformAtualiza(){
+                   
+              var email = document.getElementById("campoemail").value;
+              var senha = document.getElementById("camposenha").value;
+              var cnpj = document.getElementById("campocnpj").value;
+              var nome = document.getElementById("camponome").value;
+              var cidade = document.getElementById("campocidade").value;
+               
+            if(email.length==0 || senha.length==0 || cnpj.length==0 || nome.length==0 || cidade.length==0){
+                alert("Todos os campos devem ser preenchidos");
+                return false;
+            }else{
+               document.getElementById("form").action = "atualizateatro";
+               document.submit();
+               return true;
+            }
+        
+            
+          }
+          
+          
+          function validaformApagar(string){
+          
+              var id=string;
               var email = document.getElementById("campoemail").value;
               var senha = document.getElementById("camposenha").value;
               var cnpj = document.getElementById("campocnpj").value;
@@ -66,8 +90,12 @@
             if(email.length==0 || senha.length==0 || cnpj.length==0 || nome.length==0 || cidade.length==0   ){
                 alert("Todos os campos devem ser preenchidos");
                 return false;
+            }else{
+               document.getElementById("form").action = "apagateatro?id="+id;
+               document.submit();
+               return true;
+
             }
-        
           }
       </script>
 </html>

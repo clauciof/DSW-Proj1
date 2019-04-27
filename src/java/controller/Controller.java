@@ -57,19 +57,9 @@ public class Controller extends HttpServlet {
                     break;
                 case "/insercaoteatro":
                     insereteatro(request, response);
-                    break;
-                case "/insercaopromocao":
-                   // inserepromocao(request, response);
-                    break;
-                    
-                case "/remocao":
-                    remove(request, response);
-                    break;
-                case "/edicao":
-                    //apresentaFormEdicao(request, response);
-                    break;
-                case "/atualizacao":
-                    atualize(request, response);
+                    break;                    
+                case "/atualizateatro":
+                    atualizaTeatro(request, response);
                     break;
                 case "/formsCadastroSite":
                     apresentaFormCadastroSite(request, response);
@@ -80,6 +70,8 @@ public class Controller extends HttpServlet {
                 case "/formsCadastroTeatros":
                     apresentaFormCadastroTeatro(request, response);
                     break;
+                case "/apagateatro":
+                    deleteTeatro(request, response);
                 default:
                     lista(request, response);
                     break;
@@ -90,7 +82,6 @@ public class Controller extends HttpServlet {
     }
 
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //List<Site> listaSites = site_dao.getAll();
        List<Promocao> listaPromocoes = promocao_dao.getAlmostAll();
         
         List<SalaTeatro> listaTeatros = teatro_dao.getAlmostAll();
@@ -153,22 +144,22 @@ public class Controller extends HttpServlet {
         response.sendRedirect("index");
     }
 
-    private void atualize(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void atualizaTeatro(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
-       /* int id = Integer.parseInt(request.getParameter("id"));
-        String titulo = request.getParameter("titulo");
-        String autor = request.getParameter("autor");
-        int ano = Integer.parseInt(request.getParameter("ano"));
-        float preco = Float.parseFloat(request.getParameter("preco"));
-        Livro livro = new Livro(id, titulo, autor, ano, preco);
-        dao.update(livro);
-        response.sendRedirect("lista");*/
+        String cnpj = request.getParameter("cnpj");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("password");
+        String cidade = request.getParameter("cidade");
+        String nome = request.getParameter("nome");
+        SalaTeatro teatro = new SalaTeatro(email, senha, cidade, nome, cnpj);
+        teatro_dao.update(teatro);
+       response.sendRedirect("index");
+       
     }
 
-    private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
-       /* int id = Integer.parseInt(request.getParameter("id"));
-        Livro book = new Livro(id);
-        dao.delete(book);
-        response.sendRedirect("lista");*/
+    private void deleteTeatro(HttpServletRequest request, HttpServletResponse response) throws IOException {    
+        String cnpj = request.getParameter("id");
+        SalaTeatro salaTeatro = new SalaTeatro(cnpj);
+        teatro_dao.delete(salaTeatro);
     }
 }
