@@ -1,0 +1,42 @@
+insert into ROOT.site(email, senha, endereco, nome, telefone)
+  values('promos@bol.com.br', '42232', 'www.peixeurbano.com.br', 'peixe urbano', '869998654' );
+
+insert into ROOT.site(email, senha, endereco, nome, telefone)
+  values('sitecultural@cultural.com', '12345', 'www.cultural.com.br', 'cultural web eventos', '86458654' );
+
+insert into ROOT.site(email, senha, endereco, nome, telefone)
+  values('sitepromo@promo.com', '12345', 'www.sitepromo.com.br', 'site promo', '86764654' );
+
+insert into ROOT.site(email, senha, endereco, nome, telefone)
+  values('meucupom@promo.com', '12345', 'www.meucupom.com.br', 'cupom', '867697654' );
+
+insert into ROOT.site(email, senha, endereco, nome, telefone)
+  values('groupon@groupon.com', '12345', 'www.groupon.com.br', 'groupon', '8672337654' );
+
+
+insert into ROOT.salateatro(cnpj, email, senha, cidade, nome)
+    values('877773534', 'teatros@hotmail.com', '9876', 'Pindamonhangaba', 'Teatro Viva' );
+
+insert into ROOT.salateatro(cnpj, email, senha, cidade, nome)
+    values('6586786756', 'teatro-eventos@eventos.com.br', '1234', 'sao carlos', 'Teatro Shopping' );
+
+insert into ROOT.salateatro(cnpj, email, senha, cidade, nome)
+    values('9089786756', 'salasteatro@teatro.com.br', '1234', 'sao carlos', 'Teatro Municipal' );
+
+insert into ROOT.salateatro(cnpj, email, senha, cidade, nome)
+    values('5467890090', 'riachuelos@riachuelos.com.br', '1234', 'Natal', 'Teatro Riachuelo' );
+
+insert into ROOT.salateatro(cnpj, email, senha, cidade, nome)
+    values('650086756', 'quatrodesetembro@eventos.com', '1234', 'Teresina', 'Teatro 4 de setembro' );
+
+
+insert into ROOT.promocao(cnpj, senha, url, nome_peca, preco, data_preco, horario)
+        values('9089786756', '4223', 'www.peixeurbano.com.br', 'magico de Oz', 100.0, '18/07/19', '18:00' );
+
+insert into ROOT.promocao(cnpj, senha, url, nome_peca, preco, data_preco, horario)
+    values('6586786756', '1234', 'www.cultural.com.br', 'cisne negro', 25.0, '19/06/19', '17:00' );
+
+insert into ROOT.promocao(cnpj, senha, url, nome_peca, preco, data_preco, horario)
+    values('9089786756', '1234', 'www.sitepromo.com.br', 'fantasmao da opera', 35.0, '13/06/19', '13:00' );
+
+          
