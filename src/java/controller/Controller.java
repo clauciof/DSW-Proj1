@@ -72,6 +72,10 @@ public class Controller extends HttpServlet {
                     break;
                 case "/apagateatro":
                     deleteTeatro(request, response);
+                case "/buscaPromocaoPorTeatro":    
+                    listaPromocaoPorTeatro(request, response);
+                case "/buscaTeatroPorCidade":    
+                    listaTeatroPorCidade(request, response);
                 default:
                     lista(request, response);
                     break;
@@ -161,5 +165,30 @@ public class Controller extends HttpServlet {
         String cnpj = request.getParameter("id");
         SalaTeatro salaTeatro = new SalaTeatro(cnpj);
         teatro_dao.delete(salaTeatro);
+    }
+    
+    private void listaPromocaoPorTeatro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+  
+        String nome = request.getParameter("teatro");
+        
+        List<Promocao> listaPromocoes = promocao_dao.getAlmostAllByName(nome);
+        
+        request.setAttribute("listaPromocoes", listaPromocoes);
+        response.sendRedirect("index");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/index.jsp");
+        dispatcher.forward(request, response);
+    }
+    
+    private void listaTeatroPorCidade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+  
+        String cidade = request.getParameter("cidade");
+        
+        List<SalaTeatro> listaTeatros = teatro_dao.getAlmostAllByName(cidade);
+        
+         request.setAttribute("listaTeatros", listaTeatros);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("paginasjsp/index.jsp");
+        dispatcher.forward(request, response);
     }
 }

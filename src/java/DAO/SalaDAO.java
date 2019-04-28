@@ -146,6 +146,36 @@ public class SalaDAO {
     }
     
     
+   public List<SalaTeatro> getAlmostAllByName(String cidade) {
+       SalaTeatro salateatro = null;
+        List<SalaTeatro> listaSalateatro = new ArrayList<>();
+        String sql = "SELECT email, cidade, nome, cnpj FROM salateatro WHERE ciade = ?";
+        try {
+            Connection conn = this.getConnection();
+           PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, cidade);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String cnpj_ = resultSet.getString("cnpj");
+                String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                cidade = resultSet.getString("cidade");
+                String nome = resultSet.getString("nome");
+                salateatro = new SalaTeatro(email, senha, cidade, nome, cnpj_);
+                
+                salateatro = new SalaTeatro(email, cidade, nome, cnpj_);
+                listaSalateatro.add(salateatro);
+            }
+            
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaSalateatro;
+    }
+
     
     
     

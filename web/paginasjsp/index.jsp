@@ -13,9 +13,11 @@
         <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
         <style>
             <%@ include file="css/stylesheet.css"%>
+            <%@ include file="js/ajax.js"%>
         </style>
     </head>
     <body>
+     <jsp:useBean id='bean' class='bean.DynamicSelectBean'/>
     <center >
       <div class="div-header">
         <h1>Gerenciamento de Sites e Teatros</h1>
@@ -35,6 +37,14 @@
 
      <div class="container-esquerdo-principal">
         <h2><a>Promoções</a></h2>
+        
+        Filtrar por teatro
+        <select id = 'teatro' name='teatro' onchange='teatroSelecionado(this.value)' >
+                            <option value='--'>--</option>
+                            <c:forEach items='${bean.teatros}' var='teatros'>
+                                <option value='${teatros.cnpj}' >${teatros.nome}</option>
+                            </c:forEach>
+        </select>   
           
           
           
@@ -66,6 +76,16 @@
 
         <div class="container-direito-principal">
           <h2><a>Teatros</a></h2>
+          
+          Filtrar por cidade
+          
+        <select id = 'cidade' name='cidade' onchange='cidadeSelecionada(this.value)' >
+                            <option value='--'>--</option>
+                            <c:forEach items='${bean.teatros}' var='teatros'>
+                                <option value='${teatros.cidade}' >${teatros.cidade}</option>
+                            </c:forEach>
+        </select>   
+       
           
           
           <div class="table-teatro">

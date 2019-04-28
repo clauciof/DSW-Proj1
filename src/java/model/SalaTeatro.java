@@ -38,6 +38,7 @@ public class SalaTeatro {
     this.cnpj = cnpj;
        
  }
+ 
 
  public String getEmail() {
  return email;

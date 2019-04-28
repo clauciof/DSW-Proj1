@@ -168,5 +168,32 @@ public class PromocaoDAO {
         }
         return site;
     }
+      
+      public List<Promocao> getAlmostAllByName(String nome) {
+        List<Promocao> listaPromocao = new ArrayList<>();
+        String sql = "SELECT nome_peca, url, preco, data_peca, horario FROM promocao WHERE cnpj = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, nome);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String nome_peca = resultSet.getString("nome_peca");
+                String url = resultSet.getString("url");
+                String preco = resultSet.getString("preco");
+                String data_peca = resultSet.getString("data_peca");
+                String horario = resultSet.getString("horario");
+                Promocao promocao = new Promocao(nome_peca, url, preco, data_peca, horario);
+                listaPromocao.add(promocao);
+            }
+            
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return listaPromocao;
+    }
 }
 
